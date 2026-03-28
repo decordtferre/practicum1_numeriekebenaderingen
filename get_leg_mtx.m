@@ -1,11 +1,10 @@
 function A = get_leg_mtx(x, n)
     
-    x = x(:);
+    x = x(:); % Zorgt ervoor dat x een kolomvector is
     N = length(x);
     A = zeros(N, n+1);
 
-    A(:, 1) = 1;
-
+    A(:, 1) = 1; % P0(x) = 1
     if n >= 1
         A(:, 2) = x;
     end
