@@ -1,3 +1,5 @@
+%% Benaderen van twee verschillende functievoorschriften
+
 % Rooster aanmaken
 N = 31; M = 31;
 x = linspace(-1, 1, N);
@@ -8,7 +10,7 @@ n = 7; m = 7;
 A = get_leg_mtx(x, n);
 B = get_leg_mtx(y, m);
 
-%% Dataset 1
+%% Dataset 1: Gaussische functie
 F1 = exp(1 - (2.5*X).^2 - (2*Y).^2);
 C1 = kkb(x, y, F1, n, m);
 F1_approx = B * C1 * A';

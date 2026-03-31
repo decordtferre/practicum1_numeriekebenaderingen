@@ -16,6 +16,8 @@ B = get_leg_mtx(y, graad);
 F_approx = B * C * A';
 
 % Plot residu
+% Residu wordt steeds kleiner en kleiner verwacht naargelang de betere
+% benadering
 residu = abs(F_approx(:) - F(:));
 disp('Residu:')
 disp(max(residu))  % moet ongeveer 0 zijn
