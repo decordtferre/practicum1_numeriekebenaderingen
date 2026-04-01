@@ -1,5 +1,3 @@
-% Genereert Legendrepolynomen in matrix
-
 function A = get_leg_mtx(x, n)
     
     x = x(:); % Zorgt ervoor dat x een kolomvector is

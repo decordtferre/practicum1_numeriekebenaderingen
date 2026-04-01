@@ -12,7 +12,7 @@ y = linspace(-1, 1, M);
 F1 = exp(1 - (2.5*X).^2 - (2*Y).^2);
 F2 = membrane(1, 15);
 
-graden = 1:40;
+graden = 1:20;
 kost1 = zeros(1, 20);
 kost2 = zeros(1, 20);
 
