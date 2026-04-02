@@ -2,8 +2,9 @@ function Z = kkb_spline(t, x, f, xplot)
 R = length(x);
 %t_length = n + 2k + 1
 t_length = length(t);
-k = floor((t_length-R)/2);
+k = 3;
 n = t_length - k - 1;
+f = f(:); % omzetten naar kolomvector
 
 
 M = zeros(R, n+k);
@@ -11,7 +12,7 @@ M = zeros(R, n+k);
 for graad = 1:R
     xg = x(graad);
     % graad 0
-    N = zeros(n, k+1);
+    N = zeros(n+k, k+1);
     for i = 1:n
         if (t(i) <= xg && xg < t(i+1))
             N(i,1) = 1;
