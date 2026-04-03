@@ -1,4 +1,4 @@
-load("Documents/MATLAB/practicum1_numeriekebenaderingen/exercise10.mat")
+load("exercise10.mat")
 
 xplot = linspace(min(x), max(x), 1000);
 evaluatie1 = kkb_spline(t1, x, y', xplot);
