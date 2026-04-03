@@ -3,7 +3,7 @@ R = length(x);
 %t_length = n + 2k + 1
 t_length = length(t);
 k = 3;
-n = t_length - k - 1;
+n = t_length - 2*k - 1;
 
 
 M = zeros(R, n+k);
