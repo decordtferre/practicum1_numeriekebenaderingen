@@ -1,11 +1,12 @@
 load("Documents/MATLAB/practicum1_numeriekebenaderingen/exercise10.mat")
 
-xplot = linspace(min(x), max(x), 1000); % nog weghalen?
-evaluatie1 = kkb_spline(t1, x, y, xplot);
-evaluatie2 = kkb_spline(t2, x, y, xplot);
+xplot = linspace(min(x), max(x), 1000);
+evaluatie1 = kkb_spline(t1, x, y', xplot);
+evaluatie2 = kkb_spline(t2, x, y', xplot);
 
 
 figure;
-plot(x, y, 'o', xplot, evaluatie1, xplot, evaluatie2);
-legend('Data', 'Knooppuntenrij t1', 'Knooppuntenrij t2');
+hold on
+plot(x, y, 'ob', xplot, evaluatie1, 'r', xplot, evaluatie2, 'g');
+legend('Meetpunten', 'Knooppuntenrij t1', 'Knooppuntenrij t2');
 xlabel('x'); ylabel('y');

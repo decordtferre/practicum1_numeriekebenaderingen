@@ -4,17 +4,16 @@ R = length(x);
 t_length = length(t);
 k = 3;
 n = t_length - k - 1;
-f = f(:); % omzetten naar kolomvector
 
 
 M = zeros(R, n+k);
 
-for graad = 1:R
-    xg = x(graad);
+for rij = 1:R
+    xr = x(rij);
     % graad 0
     N = zeros(n+k, k+1);
-    for i = 1:n
-        if (t(i) <= xg && xg < t(i+1))
+    for i = 1:t_length-1
+        if (t(i) <= xr && xr < t(i+1))
             N(i,1) = 1;
         end
     end
@@ -26,21 +25,21 @@ for graad = 1:R
             if (t(i+ki) - t(i) == 0)
                 term1 = 0;
             else
-                term1 = (xg-t(i))/ (t(i+ki) - t(i)) * N(i, ki);
+                term1 = (xr-t(i))/ (t(i+ki) - t(i)) * N(i, ki);
             end
 
             % Tweede term opstellen
             if (t(i+ki+1)-t(i+1) == 0)
                 term2 = 0;
             else
-                term2 = (t(i+ki+1)-xg)/(t(i+ki+1)-t(i+1)) * N(i+1, ki);
+                term2 = (t(i+ki+1)-xr)/(t(i+ki+1)-t(i+1)) * N(i+1, ki);
             end
 
             N(i,ki+1) = term1 + term2;
         end
     end
 
-    M(graad,:) = N(:,k+1)';
+    M(rij,:) = N(:, k+1)';
 end
 
 % Normaalstelsel oplossen
