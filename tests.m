@@ -85,4 +85,20 @@ ylabel('Frobeniusnorm van residu');
 title('Fout (Frobeniusnorm) vs graad');
 grid on;
 legend;
-%%
+%% Correctheidstest voor kkb_spline.m
+clear all;
+f = @(x) (1/2)*x.^3 + 3*x.^2 -5*x +7;
+
+x_eval = linspace(-5, 5, 11);
+k = 3;
+n = 5;
+t = linspace(min(x_eval), max(x_eval), n + k + 1)';
+y_eval = f(x_eval);
+
+xplot = linspace(min(x_eval), max(x_eval), 1000);
+z_benadering = kkb_spline(t, x_eval, y_eval', xplot);
+z_controle = f(xplot);
+
+fout = norm(z_benadering - z_controle);
+disp(fout);
+
