@@ -85,20 +85,38 @@ ylabel('Frobeniusnorm van residu');
 title('Fout (Frobeniusnorm) vs graad');
 grid on;
 legend;
-%% Correctheidstest voor kkb_spline.m
+%% Correctheidstest voor kkb_spline.m (abs(x))
 clear all;
-f = @(x) (1/2)*x.^3 + 3*x.^2 -5*x +7;
 
-x_eval = linspace(-5, 5, 11);
+f = @(x) abs(x);
+
+a = -5; b = 5;
 k = 3;
-n = 5;
-t = linspace(min(x_eval), max(x_eval), n + k + 1)';
+n = 8;
+
+% Clamped knooppuntenrij: eerste en laatste knoop k+1 keer herhalen
+n_internal = n - k;  % aantal interne knoopintervallen
+internal_knots = linspace(a, b, n_internal + 2);  % inclusief a en b
+t = [repmat(a, 1, k), internal_knots, repmat(b, 1, k)]';
+
+R = 50;
+x_eval = linspace(a, b, R)';
 y_eval = f(x_eval);
 
-xplot = linspace(min(x_eval), max(x_eval), 1000);
-z_benadering = kkb_spline(t, x_eval, y_eval', xplot);
+xplot = linspace(a, b, 1000);
+
+z_benadering = kkb_spline(t, x_eval, y_eval, xplot);
 z_controle = f(xplot);
 
 fout = norm(z_benadering - z_controle);
-disp(fout);
+fprintf('Benaderingsfout (norm): %.6e\n', fout);
+
+figure;
+plot(xplot, z_controle, 'b-', 'LineWidth', 2); hold on;
+plot(xplot, z_benadering, 'r--', 'LineWidth', 2);
+scatter(x_eval, y_eval, 20, 'k', 'filled');
+legend('Exacte functie', 'KKB spline', 'Datapunten');
+grid on;
+xlabel('x');ylabel('y')
+title('Kleinstekwadratenbenadering met B-splines');
 

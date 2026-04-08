@@ -1,4 +1,4 @@
-function Z = kkb_spline(t, x, f, xplot)
+function [Z, M] = kkb_spline(t, x, f, xplot)
 R = length(x);
 %t_length = n + 2k + 1
 t_length = length(t);
@@ -20,7 +20,7 @@ for rij = 1:R
 
     % recursief verder werken
     for ki = 1:k
-        for i = 1:n
+        for i = 1:n+k-ki
             % Eerste term opstellen
             if (t(i+ki) - t(i) == 0)
                 term1 = 0;
