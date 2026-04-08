@@ -12,11 +12,11 @@ for i = 1:m
     c = zeros(m, 1);
     c(i) = 1;  % één basisfunctie tegelijk
     s = deboor(k, t, c, x);
-    plot(x, s);
+    plot(x, s, 'LineWidth', 2, 'DisplayName', sprintf('B_{%d, %d}',i,k));
 end
 title(sprintf('B-spline basis, graad k=%d', k));
 xlabel('x'); ylabel('B_{i,k}(x)');
 hold on;
 grid on;
-legend;
+legend('show');
 
