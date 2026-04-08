@@ -94,7 +94,7 @@ a = -5; b = 5;
 k = 3;
 n = 8;
 
-% Clamped knooppuntenrij: eerste en laatste knoop k+1 keer herhalen
+% eerste en laatste knoop k+1 keer herhalen
 n_internal = n - k;  % aantal interne knoopintervallen
 internal_knots = linspace(a, b, n_internal + 2);  % inclusief a en b
 t = [repmat(a, 1, k), internal_knots, repmat(b, 1, k)]';
